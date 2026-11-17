@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 <style>
 /* Layout idea: a lit 3D globe with a timeline under it on the left, charts below; scenario, affected countries and hotspot list on the right. One dark world, three channel colours, red reserved for the war-pressure zones. */
 :root{
@@ -21,10 +22,32 @@
   --c-pangan:#199e70;
   --c-aman:#3987e5;
   --zone:#e5392f;
+  --grid2:#5b6772;
+  --on-text:#0b1016;
+  --tipbg:#0b1016;
+  --warn:#f0a03c;
   --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
   color-scheme:dark;
 }
+
+/* light theme */
+html[data-theme="light"]{
+  --bg:#f3f1ea;--panel:#ffffff;--panel-2:#f1efe8;--line:#d8d4c8;
+  --text:#1b2127;--text-2:#444e57;--text-3:#66707a;
+  --grid2:#9aa3ab;--on-text:#ffffff;--tipbg:#ffffff;--warn:#a85d00;
+  color-scheme:light;
+}
+/* globe stays a dark space scene in both themes */
+html[data-theme="light"] .stage{
+  --bg:#0b1016;--panel:#181d23;--panel-2:#1f262d;--line:#2c353d;
+  --text:#ebe9e3;--text-2:#b4bcc3;--text-3:#8a949d;--on-text:#0b1016;
+  color-scheme:dark;color:var(--text);
+}
+html[data-theme="light"] .ctip{box-shadow:0 6px 20px rgba(27,33,39,.18)}
+html[data-theme="light"] .key i.band{background:rgba(27,33,39,.12)}
+.themebtn{font:600 14px var(--font-mono);width:34px;height:30px;padding:0;border:1px solid var(--line);border-radius:999px;color:var(--text);background:var(--panel-2);cursor:pointer;margin-right:8px;line-height:1}
+.themebtn:hover{background:var(--panel)}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);font:400 15px/1.5 var(--font-body);-webkit-text-size-adjust:100%}
 button,input,select{font:inherit;color:inherit}
@@ -84,11 +107,11 @@ h2{margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.005em;text-wra
 .gloom{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(0,0,0,0) 38%,rgba(80,6,0,.8) 100%);opacity:0;transition:opacity .6s}
 .stage.notext .tip,.stage.notext .feed,.stage.notext .legend{display:none}
 .zoom button:hover{background:var(--panel-2)}
-.zoom button[aria-pressed="true"]{background:var(--text);color:#0b1016}
+.zoom button[aria-pressed="true"]{background:var(--text);color:var(--on-text)}
 
 /* timeline */
 .tl-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.pbtn{width:46px;height:46px;border-radius:50%;border:0;background:var(--text);color:#0b1016;cursor:pointer;font-size:18px;display:grid;place-items:center;flex:none}
+.pbtn{width:46px;height:46px;border-radius:50%;border:0;background:var(--text);color:var(--on-text);cursor:pointer;font-size:18px;display:grid;place-items:center;flex:none}
 .pbtn:hover{background:#fff}
 .ibtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:16px;flex:none}
 .ibtn:hover{background:var(--panel-2)}
@@ -108,7 +131,7 @@ h2{margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.005em;text-wra
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
 .chip{padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text-2);cursor:pointer;font-size:13px}
 .chip:hover{background:var(--panel-2)}
-.chip[aria-pressed="true"]{background:var(--text);color:#0b1016;border-color:var(--text);font-weight:500}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--on-text);border-color:var(--text);font-weight:500}
 .ctl{display:grid;gap:2px;margin-bottom:12px}
 .ctl:last-child{margin-bottom:0}
 .ctl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
@@ -132,7 +155,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .chartbox svg{display:block;width:100%;height:auto;overflow:visible}
 .chartbox svg text{font:400 11px var(--font-mono);fill:var(--text-3)}
 .chartbox svg text.lbl{fill:var(--text-2)}
-.ctip{position:absolute;pointer-events:none;min-width:150px;padding:8px 10px;border-radius:10px;background:#0b1016;border:1px solid var(--line);font-size:12px;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:2}
+.ctip{position:absolute;pointer-events:none;min-width:150px;padding:8px 10px;border-radius:10px;background:var(--tipbg);border:1px solid var(--line);font-size:12px;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:2}
 .ctip[hidden]{display:none}
 .ctip .d{color:var(--text-3);margin-bottom:4px;font:400 11px var(--font-mono)}
 .ctip .r{display:flex;align-items:center;gap:8px;justify-content:space-between}
@@ -173,7 +196,7 @@ td{font-family:var(--font-mono)}
 .crow .no{font:500 12px var(--font-mono);color:var(--text-3);text-align:right}
 .crow .bar{position:relative;height:24px;border-radius:6px;background:var(--panel-2);overflow:hidden}
 .crow .fill{position:absolute;inset:0 auto 0 0;border-radius:6px;transition:width .25s}
-.crow .nm{position:absolute;left:8px;top:0;bottom:0;display:flex;align-items:center;font-size:13px;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.crow .nm{position:absolute;left:8px;top:0;bottom:0;display:flex;align-items:center;font-size:13px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
 .crow .val{font:500 13px var(--font-mono);text-align:right;font-variant-numeric:tabular-nums}
 
 /* hotspot list */
@@ -237,7 +260,7 @@ section{min-width:0;max-width:100%}.app,.layout{min-width:0;max-width:100%}
       <h1>Simulasi Pasar saat Perang</h1>
       <p class="sub">Sepuluh titik konflik dari berita terbaru. Putar simulasi untuk melihat zona merah menyebar ke negara terdampak dan harga bergerak dari hari ke hari.</p>
     </div>
-    <div class="hr" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px 0;justify-content:flex-end"><button type="button" class="langbtn" id="lang" aria-label="Switch to English" title="Switch to English">EN</button>
+    <div class="hr" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px 0;justify-content:flex-end"><button type="button" class="themebtn" id="theme" aria-label="Ganti ke tema terang" title="Ganti ke tema terang">☀</button><button type="button" class="langbtn" id="lang" aria-label="Switch to English" title="Switch to English">EN</button>
     <div class="badge">Prototipe · angka dampak contoh · bukan saran investasi</div></div>
   </header>
   <details class="method" id="overview" style="margin-bottom:14px">
@@ -360,7 +383,7 @@ section{min-width:0;max-width:100%}.app,.layout{min-width:0;max-width:100%}
         <h2 id="stitle">Skenario</h2>
         <p class="hint">Pilih skenario cepat, atau atur sendiri titik yang ikut dan besar eskalasinya.</p>
         <div class="chips" id="chips" role="group" aria-label="Skenario cepat"></div>
-        <p class="hint" id="xtnote" hidden style="margin:8px 0;color:#f0a03c">Stress test ekstrem: skenario fiktif dengan ledakan nuklir bertahap. Guncangan tidak mereda, volatilitas sangat tinggi, dan zona meluas ke seluruh dunia. Dalam kejadian nyata pasar bisa ditutup dan kurs dibekukan, jadi angka di sini hanya ilustrasi arah, bukan perkiraan.</p>
+        <p class="hint" id="xtnote" hidden style="margin:8px 0;color:var(--warn)">Stress test ekstrem: skenario fiktif dengan ledakan nuklir bertahap. Guncangan tidak mereda, volatilitas sangat tinggi, dan zona meluas ke seluruh dunia. Dalam kejadian nyata pasar bisa ditutup dan kurs dibekukan, jadi angka di sini hanya ilustrasi arah, bukan perkiraan.</p>
         <div class="ctl">
           <div class="ctl-head"><label for="rI">Eskalasi dari kondisi hari ini</label><output id="oI" for="rI"></output></div>
           <input type="range" id="rI" min="-60" max="100" step="5">
@@ -703,29 +726,29 @@ function renderChart(A,B,ai){
   const svg=svgEl('svg',{viewBox:'0 0 '+W+' '+H,role:'img',tabindex:'0','aria-label':ASSETS[ai].name+': median '+lblEnd(A,ai)+' pada hari ke-365. Panah kiri dan kanan memindahkan penanda hari.'});
   svg.appendChild(Object.assign(svgEl('text',{x:m.l-40,y:12}),{textContent:axTitle(ai)}));
   for(let v=y0;v<=y1+1e-9;v+=step){
-    svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'#2c353d','stroke-width':1}));
+    svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':1}));
     const tx=svgEl('text',{x:m.l-8,y:Y(v)+4,'text-anchor':'end'});tx.textContent=axFmt(v,step);svg.appendChild(tx);
   }
-  if(BV>=y0&&BV<=y1)svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(BV),y2:Y(BV),stroke:'#5b6772','stroke-width':1}));
+  if(BV>=y0&&BV<=y1)svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(BV),y2:Y(BV),stroke:'var(--grid2)','stroke-width':1}));
   TICKS.forEach(t=>{const tx=svgEl('text',{x:X(t),y:H-8,'text-anchor':t===0?'start':t===T?'end':'middle'});tx.textContent=t===0?'hari 0':String(t);svg.appendChild(tx)});
   let band='M'+X(0)+' '+Y(A.p90[0]);
   for(let t=1;t<=T;t++)band+=' L'+X(t).toFixed(1)+' '+Y(A.p90[t]).toFixed(1);
   for(let t=T;t>=0;t--)band+=' L'+X(t).toFixed(1)+' '+Y(A.p10[t]).toFixed(1);
   svg.appendChild(svgEl('path',{d:band+' Z',fill:'rgba(235,233,227,0.16)'}));
   const line=(arr)=>{let d='';for(let t=0;t<=T;t++)d+=(t?' L':'M')+X(t).toFixed(1)+' '+Y(arr[t]).toFixed(1);return d};
-  svg.appendChild(svgEl('path',{d:line(B.med),fill:'none',stroke:'#8a949d','stroke-width':2,'stroke-dasharray':'5 4'}));
-  svg.appendChild(svgEl('path',{d:line(A.med),fill:'none',stroke:'#ebe9e3','stroke-width':2.5,'stroke-linejoin':'round'}));
-  svg.appendChild(svgEl('circle',{cx:X(T),cy:Y(A.med[T]),r:4.5,fill:'#ebe9e3',stroke:'#181d23','stroke-width':2}));
+  svg.appendChild(svgEl('path',{d:line(B.med),fill:'none',stroke:'var(--text-3)','stroke-width':2,'stroke-dasharray':'5 4'}));
+  svg.appendChild(svgEl('path',{d:line(A.med),fill:'none',stroke:'var(--text)','stroke-width':2.5,'stroke-linejoin':'round'}));
+  svg.appendChild(svgEl('circle',{cx:X(T),cy:Y(A.med[T]),r:4.5,fill:'var(--text)',stroke:'var(--panel)','stroke-width':2}));
   let ya=Y(A.med[T]),yb=Y(B.med[T]);
   if(Math.abs(ya-yb)<16){const mid=(ya+yb)/2;if(ya<=yb){ya=mid-8;yb=mid+8}else{ya=mid+8;yb=mid-8}}
-  const la=svgEl('text',{x:X(T)+10,y:ya+4,class:'lbl'});la.textContent='Skenario '+lblEnd(A,ai);la.style.fill='#ebe9e3';
+  const la=svgEl('text',{x:X(T)+10,y:ya+4,class:'lbl'});la.textContent='Skenario '+lblEnd(A,ai);la.style.fill='var(--text)';
   const lb=svgEl('text',{x:X(T)+10,y:yb+4,class:'lbl'});lb.textContent='Tanpa konflik';
   svg.append(la,lb);
-  const nowG=svgEl('g',{});nowG.appendChild(svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'#ebe9e3','stroke-width':1.5,x1:X(S.t),x2:X(S.t)}));nowG.appendChild(svgEl('circle',{r:4,fill:'#ebe9e3',stroke:'#181d23','stroke-width':2,cx:X(S.t),cy:Y(A.med[Math.round(S.t)])}));svg.appendChild(nowG);
+  const nowG=svgEl('g',{});nowG.appendChild(svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'var(--text)','stroke-width':1.5,x1:X(S.t),x2:X(S.t)}));nowG.appendChild(svgEl('circle',{r:4,fill:'var(--text)',stroke:'var(--panel)','stroke-width':2,cx:X(S.t),cy:Y(A.med[Math.round(S.t)])}));svg.appendChild(nowG);
   const cross=svgEl('g',{visibility:'hidden'});
-  cross.appendChild(svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'#b4bcc3','stroke-width':1}));
-  cross.appendChild(svgEl('circle',{r:4.5,fill:'#ebe9e3',stroke:'#181d23','stroke-width':2,class:'ca'}));
-  cross.appendChild(svgEl('circle',{r:4.5,fill:'#8a949d',stroke:'#181d23','stroke-width':2,class:'cb'}));
+  cross.appendChild(svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'var(--text-2)','stroke-width':1}));
+  cross.appendChild(svgEl('circle',{r:4.5,fill:'var(--text)',stroke:'var(--panel)','stroke-width':2,class:'ca'}));
+  cross.appendChild(svgEl('circle',{r:4.5,fill:'var(--text-3)',stroke:'var(--panel)','stroke-width':2,class:'cb'}));
   svg.appendChild(cross);
   const hit=svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph,fill:'transparent'});svg.appendChild(hit);
   CH_STATE={A:A,B:B,X:X,Y:Y,W:W,H:H,m:m,pw:pw,cross:cross,svg:svg,nowG:nowG};
@@ -1778,12 +1801,27 @@ function setLang(l,persist){
   document.documentElement.lang=l;
   document.title=l==='en'?'Markets in Wartime: A Simulation':'Simulasi Pasar Perang';
   const b=$('lang');if(b){b.textContent=l==='en'?'ID':'EN';b.setAttribute('aria-label',l==='en'?'Ganti ke Bahasa Indonesia':'Switch to English');b.title=b.getAttribute('aria-label')}
-  rerenderAll();
+  rerenderAll();updateThemeBtn();
   if(l==='en')i18nWalk(document.body);
   dirtySphere=true;
   if(persist!==false){try{localStorage.setItem('lang',l)}catch(e){}}
 }
 if($('lang'))$('lang').addEventListener('click',()=>setLang(LANG==='en'?'id':'en'));
+
+/* theme */
+function curTheme(){return document.documentElement.getAttribute('data-theme')==='light'?'light':'dark'}
+function updateThemeBtn(){
+  const b=$('theme');if(!b)return;const light=curTheme()==='light',en=LANG==='en';
+  b.textContent=light?'☾':'☀';
+  const l=light?(en?'Switch to dark theme':'Ganti ke tema gelap'):(en?'Switch to light theme':'Ganti ke tema terang');
+  b.setAttribute('aria-label',l);b.title=l;
+}
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  try{localStorage.setItem('theme',t)}catch(e){}
+  updateThemeBtn();
+}
+(function(){const b=$('theme');if(!b)return;b.addEventListener('click',()=>setTheme(curTheme()==='light'?'dark':'light'));updateThemeBtn()})();
 
 /* ---------- globe controller ---------- */
 let tween=null,autoRot=false,vel={lon:0,lat:0};
@@ -1904,8 +1942,8 @@ function buildCountries(){
 }
 function mkSpark(id){
   const svg=svgEl('svg',{class:'spark',viewBox:'0 0 64 22','aria-hidden':'true'});svg.dataset.id=id;
-  svg.appendChild(svgEl('path',{fill:'none',stroke:'#8a949d','stroke-width':1.5,'stroke-linejoin':'round'}));
-  svg.appendChild(svgEl('circle',{r:2.5,fill:'#ebe9e3',cx:2,cy:20}));
+  svg.appendChild(svgEl('path',{fill:'none',stroke:'var(--text-3)','stroke-width':1.5,'stroke-linejoin':'round'}));
+  svg.appendChild(svgEl('circle',{r:2.5,fill:'var(--text)',cx:2,cy:20}));
   return svg;
 }
 function updateSparks(){
@@ -1926,7 +1964,7 @@ function renderWar(){
   const svg=svgEl('svg',{viewBox:'0 0 '+W+' '+H,role:'img',tabindex:'0','aria-label':'Grafik tekanan perang bertumpuk per kanal, hari 0 sampai 365. Puncak '+nf0.format(hi)+' poin. Panah kiri dan kanan memindahkan hari simulasi.'});
   const yl=svgEl('text',{x:m.l-40,y:10});yl.textContent='Poin tekanan';svg.appendChild(yl);
   for(let v=0;v<=y1+1e-9;v+=step){
-    svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'#2c353d','stroke-width':1}));
+    svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':1}));
     const tx=svgEl('text',{x:m.l-8,y:Y(v)+4,'text-anchor':'end'});tx.textContent=nf0.format(v);svg.appendChild(tx);
   }
   TICKS.forEach(t=>{const tx=svgEl('text',{x:X(t),y:H-8,'text-anchor':t===0?'start':t===T?'end':'middle'});tx.textContent=t===0?'hari 0':String(t);svg.appendChild(tx)});
@@ -1937,12 +1975,12 @@ function renderWar(){
     let d='M'+X(0)+' '+Y(cum[k+1][0]);
     for(let t=1;t<=T;t++)d+=' L'+X(t).toFixed(1)+' '+Y(cum[k+1][t]).toFixed(1);
     for(let t=T;t>=0;t--)d+=' L'+X(t).toFixed(1)+' '+Y(cum[k][t]).toFixed(1);
-    svg.appendChild(svgEl('path',{d:d+' Z',fill:s[1],stroke:'#181d23','stroke-width':2,'stroke-linejoin':'round'}));
+    svg.appendChild(svgEl('path',{d:d+' Z',fill:s[1],stroke:'var(--panel)','stroke-width':2,'stroke-linejoin':'round'}));
     const mid=(Y(cum[k][T])+Y(cum[k+1][T]))/2;
     if(Y(cum[k][T])-Y(cum[k+1][T])>13){const tx=svgEl('text',{x:W-m.r+8,y:mid+4,class:'lbl'});tx.textContent=s[2].split(' ')[0];svg.appendChild(tx)}
   });
-  const nowG=svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'#ebe9e3','stroke-width':1.5,x1:X(S.t),x2:X(S.t)});svg.appendChild(nowG);
-  const cross=svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'#b4bcc3','stroke-width':1,visibility:'hidden','stroke-dasharray':'3 3'});svg.appendChild(cross);
+  const nowG=svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'var(--text)','stroke-width':1.5,x1:X(S.t),x2:X(S.t)});svg.appendChild(nowG);
+  const cross=svgEl('line',{y1:m.t,y2:m.t+ph,stroke:'var(--text-2)','stroke-width':1,visibility:'hidden','stroke-dasharray':'3 3'});svg.appendChild(cross);
   const hit=svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph,fill:'transparent'});svg.appendChild(hit);
   WSTATE={X:X,nowG:nowG};
   const view=$('warview');view.textContent='';view.appendChild(svg);
@@ -2009,17 +2047,17 @@ function renderLive(){
   const svg=svgEl('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':a.name+': satu jalur contoh. 30 hari sebelum konflik bergerak tenang, lalu jalannya mengikuti garis waktu simulasi.'});
   svg.appendChild(svgEl('rect',{x:m.l,y:m.t,width:X(0)-m.l,height:ph,fill:'rgba(235,233,227,0.05)'}));
   for(let v=y0;v<=y1+1e-9;v+=step){
-    svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'#2c353d','stroke-width':1}));
+    svg.appendChild(svgEl('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':1}));
     const tx=svgEl('text',{x:m.l-8,y:Y(v)+4,'text-anchor':'end'});tx.textContent=axFmt(v,step);svg.appendChild(tx);
   }
-  svg.appendChild(svgEl('line',{x1:X(0),x2:X(0),y1:m.t,y2:m.t+ph,stroke:'#b4bcc3','stroke-width':1,'stroke-dasharray':'3 3'}));
+  svg.appendChild(svgEl('line',{x1:X(0),x2:X(0),y1:m.t,y2:m.t+ph,stroke:'var(--text-2)','stroke-width':1,'stroke-dasharray':'3 3'}));
   [[-30,'start'],[0,'middle'],[120,'middle'],[240,'middle'],[365,'end']].forEach(p=>{const tx=svgEl('text',{x:X(p[0]),y:H-8,'text-anchor':p[1]});tx.textContent=p[0]===0?'hari 0':String(p[0]);svg.appendChild(tx)});
   const l1=svgEl('text',{x:m.l+6,y:m.t+13,class:'lbl'});l1.textContent='Normal';svg.appendChild(l1);
   const l2=svgEl('text',{x:X(0)+6,y:m.t+13,class:'lbl'});l2.textContent='Konflik dimulai';svg.appendChild(l2);
   let d='';for(let i=0;i<=PRE;i++)d+=(i?' L':'M')+X(i-PRE).toFixed(1)+' '+Y(LIVE.pre[i]).toFixed(1);
-  svg.appendChild(svgEl('path',{d:d,fill:'none',stroke:'#8a949d','stroke-width':2,'stroke-linejoin':'round'}));
-  const post=svgEl('path',{fill:'none',stroke:'#ebe9e3','stroke-width':2.2,'stroke-linejoin':'round'});svg.appendChild(post);
-  const head=svgEl('circle',{r:4.5,fill:'#ebe9e3',stroke:'#181d23','stroke-width':2});svg.appendChild(head);
+  svg.appendChild(svgEl('path',{d:d,fill:'none',stroke:'var(--text-3)','stroke-width':2,'stroke-linejoin':'round'}));
+  const post=svgEl('path',{fill:'none',stroke:'var(--text)','stroke-width':2.2,'stroke-linejoin':'round'});svg.appendChild(post);
+  const head=svgEl('circle',{r:4.5,fill:'var(--text)',stroke:'var(--panel)','stroke-width':2});svg.appendChild(head);
   LIVE.svg=svg;LIVE.X=X;LIVE.Y=Y;LIVE.postEl=post;LIVE.head=head;
   const v=$('liveview');v.textContent='';v.appendChild(svg);
   updateLive();
