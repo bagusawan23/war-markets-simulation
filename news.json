@@ -3,18 +3,25 @@
  "items": {
   "hormuz": [
    {
-    "date": "2026-07-15",
-    "title": "AS dan Iran sama-sama mengklaim mengendalikan Selat Hormuz setelah akhir pekan serangan; masa kesepakatan sementara 60 hari baru separuh jalan.",
-    "title_en": "US and Iran each claim control of the Strait of Hormuz after a weekend of attacks; the 60-day interim deal is only about halfway through.",
-    "source": "AP via Naharnet",
-    "url": "https://cdn.naharnet.com/stories/en/321214-us-and-iran-vie-for-strait-of-hormuz-waterway-key-to-global-energy-supplies"
+    "date": "2026-11-16",
+    "title": "China Turns to Iraqi Oil as U . S . Blockade Chokes Iranian Supply",
+    "title_en": "China Turns to Iraqi Oil as U . S . Blockade Chokes Iranian Supply",
+    "source": "oilprice.com",
+    "url": "https://oilprice.com/Latest-Energy-News/World-News/China-Turns-to-Iraqi-Oil-as-US-Blockade-Chokes-Iranian-Supply.html"
    },
    {
-    "date": "2026-07-13",
-    "title": "CENTCOM menyerang sekitar 140 sasaran Iran dalam sehari, setelah Iran menghantam kapal kontainer di selat.",
-    "title_en": "CENTCOM struck about 140 Iranian targets in a day after Iran hit a container ship in the strait.",
-    "source": "The National",
-    "url": "https://www.thenationalnews.com/news/us/2026/07/12/us-iran-strikes/"
+    "date": "2026-11-16",
+    "title": "Business confidence says nothing about small business survival",
+    "title_en": "Business confidence says nothing about small business survival",
+    "source": "it-online.co.za",
+    "url": "https://it-online.co.za/2026/11/16/business-confidence-says-nothing-about-small-business-survival/"
+   },
+   {
+    "date": "2026-11-15",
+    "title": "US must respect India rightto defend itself , says Blinken",
+    "title_en": "US must respect India rightto defend itself , says Blinken",
+    "source": "nagalandpost.com",
+    "url": "https://nagalandpost.com/us-must-respect-indias-rightto-defend-itself-says-blinken/"
    }
   ],
   "yanbu": [
@@ -86,21 +93,50 @@
    }
   ],
   "israel": [],
-  "taiwan": [],
-  "venez": [
+  "taiwan": [
    {
-    "date": "2026-08-31",
-    "title": "Presiden sementara Delcy Rodriguez: kesepakatan dengan AS menargetkan lebih dari 1,5 juta barel/hari dari 17 ladang selama 25 tahun.",
-    "title_en": "Interim President Delcy Rodriguez: the US deal targets over 1.5 million bpd from 17 fields over 25 years.",
-    "source": "S&P Global",
-    "url": "https://www.spglobal.com/energy/en/news-research/latest-news/crude-oil/083126-us-venezuela-pact-seeks-15-million-bd-of-oil-output-rodriguez"
+    "date": "2026-11-15",
+    "title": "Trump , Xi and Putin plan joint meeting",
+    "title_en": "Trump , Xi and Putin plan joint meeting",
+    "source": "nagalandpost.com",
+    "url": "https://nagalandpost.com/trump-xi-and-putin-plan-joint-meeting/"
    },
    {
-    "date": "2026-08-19",
-    "title": "Lebih dari 500 ribu dari 1,25 juta barel/hari produksi Venezuela mengalir ke kilang Pantai Teluk AS.",
-    "title_en": "More than 500,000 of Venezuela's 1.25 million bpd goes to US Gulf Coast refineries.",
-    "source": "Al Jazeera",
-    "url": "https://www.aljazeera.com/news/2026/8/19/venezuela-oil-exports-surge-with-us-refineries-taking-in-half-of-output"
+    "date": "2026-11-14",
+    "title": "Trump , Xi and Putin plan an unprecedented joint meeting , White House says",
+    "title_en": "Trump , Xi and Putin plan an unprecedented joint meeting , White House says",
+    "source": "kcbd.com",
+    "url": "https://www.kcbd.com/2026/11/14/trump-xi-putin-plan-an-unprecedented-joint-meeting-white-house-says/"
+   },
+   {
+    "date": "2026-11-13",
+    "title": "U . S . stocks lose steam on Nvidia CEO exit , rising bond yields",
+    "title_en": "U . S . stocks lose steam on Nvidia CEO exit , rising bond yields",
+    "source": "haitisun.com",
+    "url": "http://www.haitisun.com/news/279429293/u-s-stocks-lose-steam-on-nvidia-ceo-exit-rising-bond-yields"
+   }
+  ],
+  "venez": [
+   {
+    "date": "2026-11-14",
+    "title": "California Democrats plan to investigate Trump but leave a third impeachment off the table for now",
+    "title_en": "California Democrats plan to investigate Trump but leave a third impeachment off the table for now",
+    "source": "pressdemocrat.com",
+    "url": "https://www.pressdemocrat.com/2026/11/14/california-democrats-plan-to-investigate-trump-but-leave-a-third-impeachment-off-the-table-for-now-2/"
+   },
+   {
+    "date": "2026-11-13",
+    "title": "High Crimes on the High Court ? AOC Suggests Impeaching Conservative Justices for Legalizing a Lot – JONATHAN TURLEY",
+    "title_en": "High Crimes on the High Court ? AOC Suggests Impeaching Conservative Justices for Legalizing a Lot – JONATHAN TURLEY",
+    "source": "jonathanturley.org",
+    "url": "https://jonathanturley.org/2026/11/13/high-crimes-on-the-high-court-aoc-suggests-impeaching-conservative-justices-for-legalizing-a-lot/comment-page-3/"
+   },
+   {
+    "date": "2026-11-13",
+    "title": "Trump claims arch at Arlington National Cemetery would honor military personnel , veterans",
+    "title_en": "Trump claims arch at Arlington National Cemetery would honor military personnel , veterans",
+    "source": "armytimes.com",
+    "url": "https://www.armytimes.com/veterans/2026/11/12/trump-claims-arch-at-arlington-national-cemetery-would-honor-military-personnel-veterans/"
    }
   ]
  }
